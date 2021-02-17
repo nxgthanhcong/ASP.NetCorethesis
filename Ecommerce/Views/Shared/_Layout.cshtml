@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+
+    @await Html.PartialAsync("_HeadPartial")
+    @RenderSection("CSS", false)
+</head>
+<body>
+    @{
+        ViewData["BannerTag"] = "";
+        if (ViewData["Title"].ToString().Equals("Home"))
+        {
+            <div class="main-banner" id="home">
+                @await Html.PartialAsync("_MainBannerPartial")
+                @await Html.PartialAsync("_BannerInforPartial")
+            </div>
+        }
+        else
+        {
+            <div class="main-banner inner" id="home">
+                @await Html.PartialAsync("_MainBannerPartial")
+            </div>
+        }
+
+    }
+
+    @await Html.PartialAsync("_BreadCrumbPartial")
+    @RenderBody()
+
+    @await Html.PartialAsync("_FootPartial")
+    
+    @RenderSection("Scripts", false)
+    @RenderSection("JS", false)
+</body>
+</html>

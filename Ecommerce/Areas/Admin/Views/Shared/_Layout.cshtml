@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @await Html.PartialAsync("_HeadPartial")
+</head>
+<body>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                @await Html.PartialAsync("_HeaderMainPartial")
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a> <i class="fa fa-angle-right"></i></li>
+                </ol>
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        @await Html.PartialAsync("_SidebarPartial")
+        <div class="clearfix"></div>
+    </div>
+    <!--copy rights start here-->
+    <div class="copyrights">
+        <p>© All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">Cong</a> </p>
+    </div>
+    <!--COPY rights end here-->
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    @RenderSection("Scripts", false)
+</body>
+</html>

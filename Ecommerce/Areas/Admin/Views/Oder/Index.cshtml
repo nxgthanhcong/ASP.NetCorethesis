@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Ecommerce.Areas.Admin.Models.Oder>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Oder Dashboard</h2>
+
+@*<div id="editForm">
+    <h3>Edit</h3>
+    <form action="javascript:void(0);" onsubmit="updateItem()">
+        <input type="hidden" id="edit-id">
+        <input type="text" id="edit-OderDate">
+        <input type="text" id="edit-Status">
+        <input type="text" id="edit-Price">
+        <input type="submit" value="Save">
+        <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+    </form>
+</div>*@
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="ListOders">
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/Admin/DTO/OderAPI.js"></script>
+    <script src="~/Admin/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        GetOders();
+    </script>
+}

@@ -1,0 +1,38 @@
+﻿@model Ecommerce.Areas.Admin.Models.User
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Datatable</h1>
+
+<div class="container">
+    <div class="">&nbsp;</div>
+    <div class="">
+        <div class="">User:</div>
+        <div class=""><input type="text" id="userInput" value="@ViewBag.Cong" disabled/></div>
+    </div>
+    <div class="" >
+        <div class="">Message:</div>
+        <div class=""><input type="text" id="messageInput"style="
+    width: 508px;
+    height: 206px; background-color: #ffffff;"  /></div>
+    </div>
+    <div class="">&nbsp;</div>
+    <div class="">
+        <div class="">
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+</div>
+<div class="">
+    <div class="">
+        <hr />
+    </div>
+</div>
+<div class="">
+    <div class="">
+        <ul id="messagesList"></ul>
+    </div>
+</div>
+<script src="~/Admin/js/dist/browser/signalr.js"></script>
+<script src="~/Admin/js/chat.js"></script>

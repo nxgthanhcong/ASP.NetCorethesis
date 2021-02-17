@@ -1,0 +1,131 @@
+﻿@model Ecommerce.Areas.Admin.Models.User
+
+@{
+    ViewData["Title"] = "Index";
+}
+<partial name="Create" />
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gmail)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rule)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (User item in ViewBag.ListUser)
+        {
+        <tr>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                <input id="@item.ID" type="checkbox" name="name" @{ if (item.Status == true) { @: checked
+                       } else { @: uncheck
+                       } } disabled />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rule)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="Index" asp-route-id="@item.ID">Edit</a>
+                <button id="txtbtn" class="btn btn-warning" name="update_user_stt" data-id="@item.ID"
+                        data-password="@item.Password" data-name="@item.Name" data-address="@item.Address" data-phone="@item.Phone"
+                        data-stt="@(item.Status)" data-gmail="@item.Gmail">
+                    @{
+                        if (item.Status == true)
+                        {
+                            @:Ẩn
+                        }
+                        else
+                        {
+                            @:Hiện
+                        }
+                    }
+
+                </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+            var stt = ($('button[name=update_user_stt]').attr('data-stt'));
+            stt = JSON.parse(stt.toLowerCase());
+
+            $('button[name=update_user_stt]').on('click', function (e) {
+                var id = $(this).attr('data-id');
+                var username = $(this).attr('data-username');
+                var password = $(this).attr('data-password');
+                var name = $(this).attr('data-name');
+                var address = $(this).attr('data-address');
+                var phone = $(this).attr('data-phone');
+                var gmail = $(this).attr('data-gmail');
+            $.ajax({
+                method: "POST",
+                url: "../api/users_api/UpdateStatus",
+                contentType: 'application/json;charset=UTF-8',
+                data: JSON.stringify({ "ma": parseInt(id), "stt": stt }),
+                success: function (msg) {
+                    if (msg == '0') {
+                        alert("Cập nhập thất bại!!");
+                    }
+                    else {
+                        var r = JSON.parse(msg);
+                        if (r.stt == "True") {
+                            $('button[name=update_user_stt][data-id=' + r.id + ']').html('Ẩn');
+                            $("#" + id).prop("checked", true);
+                            stt = !stt;
+                        }
+                        else {
+                            $('button[name=update_user_stt][data-id=' + r.id + ']').html('Hiện');
+                            $("#" + id).prop("checked", false);
+                            stt = !stt;
+                        }
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+         })
+    </script>
+}

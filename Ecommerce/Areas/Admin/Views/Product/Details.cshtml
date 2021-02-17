@@ -1,0 +1,110 @@
+﻿@model Ecommerce.Areas.Admin.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd id="trans">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd id="content">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Imgage)
+        </dt>
+        <dd>
+            <div class="form-group">
+                <img id="imgPre" src="~/img/pro/@Model.Imgage?@{new Random().Next(1, 1000).ToString();}" alt="no image" class="img-thumbnail" />
+                <input asp-for="Imgage" type="hidden" />
+            </div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Brand.Logo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Namsx)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Namsx)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayNhapKhau)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgayNhapKhau)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DongCo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DongCo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts{
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    $('#content')
+}

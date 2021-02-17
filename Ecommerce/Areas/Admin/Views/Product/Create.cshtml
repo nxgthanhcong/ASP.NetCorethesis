@@ -1,0 +1,120 @@
+﻿@model Ecommerce.Areas.Admin.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" value="Hussarya"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SerialNumber" class="control-label"></label>
+                <input asp-for="SerialNumber" class="form-control" value="111-222-333" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" value="Arrinera đã phát triển một loại xe đua theo các thông số kỹ thuật của dòng xe đua GT3 - chiếc Hussarya GT. Mẫu này được trưng bày lần đầu tiên tại triển lãm ô tô Autosport International ở Birmingham, Anh hồi tháng 1 năm 2016. Tháng 6 cùng năm đó, trong hạng siêu xe, Hussarya GT là chiếc xe ô tô đầu tiên của Ba Lan tham gia vào Goodwood Festival of Speed." />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control" value="giây. Trong cuộc đua thứ hai, chiếc xe phải bỏ cuộc do hỏng máy dao điện.[3][4]Tháng 9 năm 2017, chiếc xe tham gia vào vòng đua Donington của giải vô địch Britcar do Jonny MacGregor cầm lái. Tại vòng loại, động cơ xe đã bị nổ và rút lui khỏi sự kiện.[5]"/>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" value="black"/>
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control"  value="5000"/>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="ful" name="ful" />
+                <label class="custom-file-label" for="ful">Chọn Hình Ảnh</label>
+            </div>
+            <div class="form-group">
+                <img id="Imgage" src="~/img/no-image.png" alt="no image" class="img-thumbnail" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryID" class="control-label"></label>
+                <select asp-for="CategoryID" class="form-control" asp-items="@(new SelectList(ViewBag.ListCategory,"ID","Name"))"></select>
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BrandID" class="control-label"></label>
+                <select asp-for="BrandID" class="form-control" asp-items="@(new SelectList(ViewBag.ListBrand,"Id","Name"))"></select>
+                <span asp-validation-for="BrandID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Namsx" class="control-label"></label>
+                <input asp-for="Namsx" class="form-control" value="1999"/>
+                <span asp-validation-for="Namsx" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayNhapKhau" class="control-label"></label>
+                <input asp-for="NgayNhapKhau" class="form-control" value="12/06/2000"/>
+                <span asp-validation-for="NgayNhapKhau" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TinhTrang" class="control-label"></label>
+                <select class="form-control" asp-for="TinhTrang">
+                    <option value="Mới" selected>Mới</option>
+                    <option value="Cũ">Cũ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DongCo" class="control-label"></label>
+                <input asp-for="DongCo" class="form-control" value="Động cơ 4 máy"/>
+                <span asp-validation-for="DongCo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Status" checked /> @Html.DisplayNameFor(model => model.Status)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function readURL(input, idImg) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $(idImg).attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+            $("#ful").change(function () {
+                readURL(this, '#imgPre');
+            });
+    </script>
+}
+

@@ -1,0 +1,68 @@
+﻿@model Ecommerce.Areas.Admin.Models.Brand
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1>@(ViewContext.RouteData.Values["id"]!=null?"Edit Brand": "Create Brand")</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data" asp-action="@(ViewContext.RouteData.Values["id"] !=null ? "Edit":"Create")" asp-controller="Brand" asp-route-id="@(ViewContext.RouteData.Values["id"]!=null?@ViewContext.RouteData.Values["id"]:"")">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @{
+                if (ViewContext.RouteData.Values["id"] != null)
+                {
+                    <input type="hidden" asp-for="Id" />
+                }
+            }
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="ful" name="ful" />
+                <label class="custom-file-label" for="ful">Chose file</label>
+            </div>
+            @{
+                if (ViewContext.RouteData.Values["id"] != null)
+                {
+
+                        <div class="form-group">
+ 
+                            <img name="ful" id="imgPre" src="~/img/pro/@Model.Logo?@{new Random().Next(1, 1000).ToString();}" alt="no image" class="img-thumbnail" />
+                            <input asp-for="Logo" type="hidden" class="form-control" />
+
+                        </div>
+                }
+                else
+                {
+                    <div class="form-group">
+
+                        <img id="imgPre" src="~/img/no-image.png" alt="no image" class="img-thumbnail" style="width:100px; height: auto" />
+
+                    </div>
+                }
+            }
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@(ViewContext.RouteData.Values["id"]!=null?"Edit":"Create")" data-toggle="modal" data-target="#myModal" class="btn btn-default" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+

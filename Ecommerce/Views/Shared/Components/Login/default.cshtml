@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<li>
+    @*First Tier Drop Down*@
+    <label for="drop-2" class="toggle">Drop Down <span class="fa fa-angle-down" aria-hidden="true"></span> </label>
+    <a href="#">Tài Khoản <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+    <input type="checkbox" id="drop-2" />
+    <ul>
+   
+        <li><a asp-action="Index" asp-controller="Login">Login</a></li>
+      
+        <li><a asp-action="Create" asp-controller="Users">Register</a></li>
+    </ul>
+</li>

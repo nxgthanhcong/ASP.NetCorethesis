@@ -1,0 +1,59 @@
+﻿@model Ecommerce.Areas.Admin.Models.Brand
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">Thông Báo</h4>
+            </div>
+            <div class="modal-body">
+
+                @{
+                    if (ViewContext.RouteData.Values["id"] != null)
+                    {
+                        @TempData["EditMessage"]
+
+                    }
+                    else
+                    {
+                        @TempData["StatusMessage"]
+                    }
+
+
+                }
+
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<partial name="Create" />
+@await Component.InvokeAsync("Brand")
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/Admin/js/Brand.js"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script>$(function () {
+            $('#myModal').on('show.bs.modal', function () {
+                var myModal = $(this);
+                clearTimeout(myModal.data('hideInterval'));
+                myModal.data('hideInterval', setTimeout(function () {
+                    myModal.modal('hide');
+                }, 6000));
+            });
+        });</script>
+
+}
